@@ -1,22 +1,20 @@
 
 
 -------------------------------------------------------------------------------------------------------------------------------
---°í°´°ü¸®
+--ê³ ê°ê´€ë¦¬
 -------------------------------------------------------------------------------------------------------------------------------
 
 
 DROP TABLE CAFE_CUSTOMER;
---°í°´Å×ÀÌºí
+--ê³ ê°í…Œì´ë¸”
 create table CAFE_CUSTOMER(                    
-    customer_code number PRIMARY key, --°í°´ÄÚµå  
-    customer_name varchar2(30), --°í°´¸í
-    customer_phone varchar2(50), --°í°´ ÀüÈ­¹øÈ£
-    customer_birth varchar2(30), -- °í°´ »ı³â¿ùÀÏ
-    customer_gender varchar2(10), --°í°´ ¼ºº°
-    customer_pwd varchar2(30),  --°í°´ ºñ¹Ğ¹øÈ£
---    customer_phone varchar(30) PRIMARY key,    
---    customer_name varchar2(40),      
-    customer_stamp number --½ºÅÆÇÁ
+    customer_code number, --ê³ ê°ì½”ë“œ  
+    customer_name varchar2(30), --ê³ ê°ëª…
+    customer_phone varchar2(50) PRIMARY key, --ê³ ê° ì „í™”ë²ˆí˜¸
+    customer_birth varchar2(30), -- ê³ ê° ìƒë…„ì›”ì¼
+    customer_gender varchar2(10), --ê³ ê° ì„±ë³„
+    customer_pwd varchar2(30),  --ê³ ê° ë¹„ë°€ë²ˆí˜¸     
+    customer_stamp number --ìŠ¤íƒ¬í”„
 );  
 DESC CAFE_CUSTOMER;
 select * FROM CAFE_CUSTOMER;
@@ -26,16 +24,16 @@ select * FROM CAFE_CUSTOMER;
 
 
 -------------------------------------------------------------------------------------------------------------------------------
---ÀÎ»ç°ü¸®
+--ì¸ì‚¬ê´€ë¦¬
 -------------------------------------------------------------------------------------------------------------------------------
 
 DROP TABLE CAFE_JOB;
- --Á÷±ŞÅ×ÀÌºí
+ --ì§ê¸‰í…Œì´ë¸”
 create table CAFE_JOB(     
-    job_code number not null unique,           --Á÷±ŞÄÚµå
-    job_name varchar(20) primary key,          --Á÷±ŞÀÌ¸§
-    job_tpay varchar(20) ,                     --½Ã±Ş
-    job_mpay varchar(20)                       --¿ù±Ş
+    job_code number not null unique,           --ì§ê¸‰ì½”ë“œ
+    job_name varchar(20) primary key,          --ì§ê¸‰ì´ë¦„
+    job_tpay varchar(20) ,                     --ì‹œê¸‰
+    job_mpay varchar(20)                       --ì›”ê¸‰
     );
 DESC CAFE_JOB;
 select * FROM CAFE_JOB;
@@ -44,36 +42,36 @@ select * FROM CAFE_JOB;
 
 
 DROP TABLE CAFE_EMPLOYEE;
---Á÷¿øÅ×ÀÌºí
+--ì§ì›í…Œì´ë¸”
 create table CAFE_EMPLOYEE(   
-    employee_code number primary key,            --Á÷¿øÄÚµå
-    employee_name varchar(20) not null unique,   --Á÷¿øÀÌ¸§
-    employee_jumin varchar(20) not null ,        --Á÷¿øÁÖ¹Î¹øÈ£  
-    employee_phone varchar(20) ,                 --Á÷¿øÇÚµåÆù¹øÈ£
-    employee_address varchar(50),                --Á÷¿øÁÖ¼Ò
-    employee_startdate date not null,            --ÀÔ»ç³¯Â¥
-    employee_enddate date,                       --Åğ»ç³¯Â¥
-    employee_endyn varchar(1),                   --Åğ»ç¿©ºÎ
-    employee_bank varchar(20),                   --ÀºÇà¸í
-    employee_bankaddress varchar(30),            --°èÁÂ¹øÈ£
-    employee_jobname varchar(20) not null REFERENCES CAFE_JOB(job_name)   --Á÷±ŞÀÌ¸§
+    employee_code number primary key,            --ì§ì›ì½”ë“œ
+    employee_name varchar(20) not null unique,   --ì§ì›ì´ë¦„
+    employee_jumin varchar(20) not null ,        --ì§ì›ì£¼ë¯¼ë²ˆí˜¸  
+    employee_phone varchar(20) ,                 --ì§ì›í•¸ë“œí°ë²ˆí˜¸
+    employee_address varchar(50),                --ì§ì›ì£¼ì†Œ
+    employee_startdate date not null,            --ì…ì‚¬ë‚ ì§œ
+    employee_enddate date,                       --í‡´ì‚¬ë‚ ì§œ
+    employee_endyn varchar(1),                   --í‡´ì‚¬ì—¬ë¶€
+    employee_bank varchar(20),                   --ì€í–‰ëª…
+    employee_bankaddress varchar(30),            --ê³„ì¢Œë²ˆí˜¸
+    employee_jobname varchar(20) not null REFERENCES CAFE_JOB(job_name)   --ì§ê¸‰ì´ë¦„
     );
     
 DESC CAFE_EMPLOYEE;
 select * FROM CAFE_EMPLOYEE;    
 
 DROP TABLE cafe_emptna;
---±ÙÅÂ Å×ÀÌºí
+--ê·¼íƒœ í…Œì´ë¸”
 create table cafe_emptna        
-(   emptna_code number primary key,                                       --±ÙÅÂÄÚµå            
-    emptna_empcode number REFERENCES CAFE_EMPLOYEE (employee_code),       --Á÷¿øÄÚµå
-    emptna_year number(4) not null,                                       --±Ù¹«ÇÑ³â
-    emptna_month number(2) not null,                                      --±Ù¹«ÇÑ¿ù
-    emptna_day number(2) not null,                                        --±Ù¹«ÇÑÀÏ
-    emptna_starttime varchar(10),                                         --Ãâ±Ù½Ã°£
-    emptna_endtime varchar(10),                                           --Åğ±Ù½Ã°£
-    emptna_daytotaltime varchar(10),                                      --ÇÏ·ç ÃÑ ÀÏÇÑ½Ã°£
-    emptna_monthtotaltime varchar(10)                                     --ÇÑ´Şµ¿¾È ÀÏÇÑ½Ã°£
+(   emptna_code number primary key,                                       --ê·¼íƒœì½”ë“œ            
+    emptna_empcode number REFERENCES CAFE_EMPLOYEE (employee_code),       --ì§ì›ì½”ë“œ
+    emptna_year number(4) not null,                                       --ê·¼ë¬´í•œë…„
+    emptna_month number(2) not null,                                      --ê·¼ë¬´í•œì›”
+    emptna_day number(2) not null,                                        --ê·¼ë¬´í•œì¼
+    emptna_starttime varchar(10),                                         --ì¶œê·¼ì‹œê°„
+    emptna_endtime varchar(10),                                           --í‡´ê·¼ì‹œê°„
+    emptna_daytotaltime varchar(10),                                      --í•˜ë£¨ ì´ ì¼í•œì‹œê°„
+    emptna_monthtotaltime varchar(10)                                     --í•œë‹¬ë™ì•ˆ ì¼í•œì‹œê°„
     );
 
 DESC cafe_emptna;
@@ -83,16 +81,16 @@ select * FROM cafe_emptna;
 
 
 -------------------------------------------------------------------------------------------------------------------------------
---Àç°í°ü¸®
+--ì¬ê³ ê´€ë¦¬
 -------------------------------------------------------------------------------------------------------------------------------
 
 DROP TABLE Cafe_account;
---°Å·¡Ã³ Å×ÀÌºí
+--ê±°ë˜ì²˜ í…Œì´ë¸”
 create table Cafe_account (
-account_number number PRIMARY key, --°Å·¡Ã³ ÄÚµå(=»ç¾÷ÀÚ¹øÈ£)
-account_name VARCHAR2(30),  -- °Å·¡Ã³ ¸í
-account_ceoname VARCHAR2(30),  -- °Å·¡Ã³ »ç¾÷ÀÚ¸í(ÀÌ¸§)
-account_address VARCHAR2(50), -- ÁÖ¼Ò
+account_number number PRIMARY key, --ê±°ë˜ì²˜ ì½”ë“œ(=ì‚¬ì—…ìë²ˆí˜¸)
+account_name VARCHAR2(30),  -- ê±°ë˜ì²˜ ëª…
+account_ceoname VARCHAR2(30),  -- ê±°ë˜ì²˜ ì‚¬ì—…ìëª…(ì´ë¦„)
+account_address VARCHAR2(50), -- ì£¼ì†Œ
 account_email VARCHAR2(100) -- email
 );
 
@@ -101,15 +99,15 @@ select * FROM Cafe_account;
 
 
 DROP TABLE Cafe_stock;
---¿øÀç·á Å×ÀÌºí
+--ì›ì¬ë£Œ í…Œì´ë¸”
 CREATE table Cafe_stock (
-stock_code NUMBER PRIMARY KEY, --¿øÀç·á ÄÚµå
-stock_productname VARCHAR2(30), --Ç°¸í(Æû¸ñÁ¾·ù ex)À¯Á¦Ç°...)
-stock_detailname VARCHAR2(50), --»ó¼¼¸í
-stock_standard VARCHAR2(30), --±Ô°İ
-stock_price VARCHAR2(50), --±İ¾×
-stock_image VARCHAR2(50), -- ÀÌ¹ÌÁö
-account_number number,  --°Å·¡Ã³ ÄÚµå
+stock_code NUMBER PRIMARY KEY, --ì›ì¬ë£Œ ì½”ë“œ
+stock_productname VARCHAR2(30), --í’ˆëª…(í¼ëª©ì¢…ë¥˜ ex)ìœ ì œí’ˆ...)
+stock_detailname VARCHAR2(50), --ìƒì„¸ëª…
+stock_standard VARCHAR2(30), --ê·œê²©
+stock_price VARCHAR2(50), --ê¸ˆì•¡
+stock_image VARCHAR2(50), -- ì´ë¯¸ì§€
+account_number number,  --ê±°ë˜ì²˜ ì½”ë“œ
 CONSTRAINT account_number FOREIGN KEY(account_number) REFERENCES Cafe_account(account_number)
 );    
 
@@ -118,25 +116,25 @@ select * FROM Cafe_stock;
 
 
 DROP TABLE CAFE_PRODUCTORDER;
---¹ßÁÖ Å×ÀÌºí
+--ë°œì£¼ í…Œì´ë¸”
 CREATE TABLE CAFE_PRODUCTORDER
 (
-productOrder_code number primary key,--ÄÚµå
-productOrder_date date,--³¯Â¥
-prodectOrder_total number--ÃÑ±İ¾×
+productOrder_code number primary key,--ì½”ë“œ
+productOrder_date date,--ë‚ ì§œ
+prodectOrder_total number--ì´ê¸ˆì•¡
 );
 DESC CAFE_PRODUCTORDER;
 select * FROM CAFE_PRODUCTORDER;
 
 
 DROP TABLE CAFE_PRODUCTORDERLIST;
---¹ßÁÖ »ó¼¼³»¿ª Å×ÀÌºí
+--ë°œì£¼ ìƒì„¸ë‚´ì—­ í…Œì´ë¸”
 CREATE TABLE CAFE_PRODUCTORDERLIST 
 (
- productOrderList_code number primary key,--ÄÚµå
- productOrderList_count number,--¼ö·®
- productOrder_code number, --¹ßÁÖÅ×ÀÌºí ÄÚµå(fk)
- stock_code number,--¿øÀç·á»óÇ°Å×ÀÌºí ÄÚµå(fk)
+ productOrderList_code number primary key,--ì½”ë“œ
+ productOrderList_count number,--ìˆ˜ëŸ‰
+ productOrder_code number, --ë°œì£¼í…Œì´ë¸” ì½”ë“œ(fk)
+ stock_code number,--ì›ì¬ë£Œìƒí’ˆí…Œì´ë¸” ì½”ë“œ(fk)
  
  CONSTRAINT productOrder_code FOREIGN KEY(productOrder_code) REFERENCES CAFE_PRODUCTORDER(productOrder_code),
  CONSTRAINT stock_code FOREIGN KEY(stock_code) REFERENCES Cafe_stock(stock_code)
@@ -148,26 +146,26 @@ select * FROM CAFE_PRODUCTORDERLIST;
 
 
 -------------------------------------------------------------------------------------------------------------------------------
---¸ÅÃâ/»óÇ°°ü¸®
+--ë§¤ì¶œ/ìƒí’ˆê´€ë¦¬
 -------------------------------------------------------------------------------------------------------------------------------
 
 DROP TABLE CAFE_PRODUCT_CATEGORY;
---»óÇ° Ä«Å×°í¸® Å×ÀÌºí
+--ìƒí’ˆ ì¹´í…Œê³ ë¦¬ í…Œì´ë¸”
 CREATE TABLE CAFE_PRODUCT_CATEGORY(
-    PRODUCT_CATEGORY_CODE  NUMBER PRIMARY KEY, --»óÇ°Ä«Å×°í¸® ÄÚµå
-    PRODUCT_CATEGORY_NAME VARCHAR2(50) NOT NULL --»óÇ°Ä«Å×°í¸®¸í
+    PRODUCT_CATEGORY_CODE  NUMBER PRIMARY KEY, --ìƒí’ˆì¹´í…Œê³ ë¦¬ ì½”ë“œ
+    PRODUCT_CATEGORY_NAME VARCHAR2(50) NOT NULL --ìƒí’ˆì¹´í…Œê³ ë¦¬ëª…
 );
 DESC CAFE_PRODUCT_CATEGORY;
 select * FROM CAFE_PRODUCT_CATEGORY;
 
---»óÇ° Ä«Å×°í¸® Å×ÀÌºí µ¥ÀÌÅÍ ÀÔ·Â
+--ìƒí’ˆ ì¹´í…Œê³ ë¦¬ í…Œì´ë¸” ë°ì´í„° ì…ë ¥
 --insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(1,'coffe');
 --insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(2,'non-coffe');
 --insert into CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE, PRODUCT_CATEGORY_NAME) values(3,'juice');
  
  
  DROP TABLE CAFE_PRODUCT_ADD;
- -- À½·á Ãß°¡ »çÇ× : EX)¼¦Ãß°¡ ÈÖÇÎÃß°¡
+ -- ìŒë£Œ ì¶”ê°€ ì‚¬í•­ : EX)ìƒ·ì¶”ê°€ íœ˜í•‘ì¶”ê°€
  create table CAFE_PRODUCT_ADD(
     PRODUCT_ADD_CODE NUMBER PRIMARY KEY,
     PRODUCT_ADD_NAME VARCHAR2(50) NOT NULL,
@@ -176,23 +174,23 @@ select * FROM CAFE_PRODUCT_CATEGORY;
 DESC CAFE_PRODUCT_ADD;
 select * FROM CAFE_PRODUCT_ADD;
 
---À½·á Ãß°¡ »çÇ× Å×ÀÌºí µ¥ÀÌÅÍ ÀÔ·Â
+--ìŒë£Œ ì¶”ê°€ ì‚¬í•­ í…Œì´ë¸” ë°ì´í„° ì…ë ¥
 --delete from CAFE_PRODUCT_ADD;
---insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(1,'¼¦Ãß°¡',500);
---insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(2,'½Ã·´Ãß°¡',500);
---insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(3,'¹öºíÃß°¡',700);
---insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(4,'ÈÖÇÎÃß°¡',700);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(1,'ìƒ·ì¶”ê°€',500);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(2,'ì‹œëŸ½ì¶”ê°€',500);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(3,'ë²„ë¸”ì¶”ê°€',700);
+--insert into CAFE_PRODUCT_ADD(PRODUCT_ADD_CODE, PRODUCT_ADD_NAME,PRODUCT_ADD_PRICE) values(4,'íœ˜í•‘ì¶”ê°€',700);
  
  
 
 DROP TABLE CAFE_PRODUCT;
---»óÇ° Å×ÀÌºí
+--ìƒí’ˆ í…Œì´ë¸”
 CREATE TABLE CAFE_PRODUCT(
-    CAFE_PRODUCT_CODE NUMBER PRIMARY KEY, --»óÇ° ÄÚµå
-    CAFE_PRODUCT_NAME VARCHAR2(50) NOT NULL, --»óÇ°¸í
-    CAFE_PRODUCT_PRICE NUMBER, --°¡°İ
-    CAFE_PRODUCT_IMG VARCHAR2(100), --ÀÌ¹ÌÁö
-    PRODUCT_CATEGORY_CODE NUMBER, --Ä«Å×°í¸®ÄÚµå
+    CAFE_PRODUCT_CODE NUMBER PRIMARY KEY, --ìƒí’ˆ ì½”ë“œ
+    CAFE_PRODUCT_NAME VARCHAR2(50) NOT NULL, --ìƒí’ˆëª…
+    CAFE_PRODUCT_PRICE NUMBER, --ê°€ê²©
+    CAFE_PRODUCT_IMG VARCHAR2(100), --ì´ë¯¸ì§€
+    PRODUCT_CATEGORY_CODE NUMBER, --ì¹´í…Œê³ ë¦¬ì½”ë“œ
     
     CONSTRAINT PRODUCT_CATEGORY_CODE FOREIGN KEY(PRODUCT_CATEGORY_CODE) REFERENCES CAFE_PRODUCT_CATEGORY(PRODUCT_CATEGORY_CODE) 
 );
@@ -204,12 +202,12 @@ delete from CAFE_PRODUCT;
 
 
 DROP TABLE CAFE_CART;
---Àå¹Ù±¸´Ï
+--ì¥ë°”êµ¬ë‹ˆ
 CREATE TABLE CAFE_CART(
-     cart_code number primary key,--Àå¹Ù±¸´Ï ÄÚµå
-     customer_code number, --°í°´ÄÚµå
-     cafe_product_code number, --»óÇ°ÄÚµå
-     cart_num number, --Àå¹Ù±¸´Ï¿¡´ãÀº »óÇ°¼ö·®
+     cart_code number primary key,--ì¥ë°”êµ¬ë‹ˆ ì½”ë“œ
+     customer_code number, --ê³ ê°ì½”ë“œ
+     cafe_product_code number, --ìƒí’ˆì½”ë“œ
+     cart_num number, --ì¥ë°”êµ¬ë‹ˆì—ë‹´ì€ ìƒí’ˆìˆ˜ëŸ‰
 
     CONSTRAINT customer_code_cart FOREIGN KEY(customer_code) REFERENCES CAFE_CUSTOMER(customer_code),
     CONSTRAINT cafe_product_code_cart FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
@@ -225,10 +223,10 @@ delete from CAFE_CART;
 
 
 DROP TABLE CAFE_CART_ADD;
---Àå¹Ù±¸´ÏÀÇ ¿É¼Ç³»¿ª Å×ÀÌºí
+--ì¥ë°”êµ¬ë‹ˆì˜ ì˜µì…˜ë‚´ì—­ í…Œì´ë¸”
 CREATE TABLE CAFE_CART_ADD(
-    cart_code number,--Àå¹Ù±¸´Ï ÄÚµå
-    PRODUCT_ADD_CODE number, --¿É¼ÇÄÚµå(fk)
+    cart_code number,--ì¥ë°”êµ¬ë‹ˆ ì½”ë“œ
+    PRODUCT_ADD_CODE number, --ì˜µì…˜ì½”ë“œ(fk)
     
     CONSTRAINT cart_code_cart_Add FOREIGN KEY(cart_code) REFERENCES CAFE_CART(cart_code),
     CONSTRAINT PRODUCT_ADD_CODE_cart_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
@@ -249,19 +247,19 @@ delete from CAFE_CART_ADD where cart_code=1;
  
  
  
-----------------------------------------web  ÁÖ¹®
+----------------------------------------web  ì£¼ë¬¸
   
  
 DROP TABLE CAFE_ORDER_WEB;
---ÁÖ¹® Å×ÀÌºí -  -web
+--ì£¼ë¬¸ í…Œì´ë¸” -  -web
 CREATE TABLE CAFE_ORDER_WEB
 (
- order_web_code number PRIMARY KEY, --ÁÖ¹® ÄÚµå
- order_web_total number, --ÃÑ ±İ¾×
- order_web_count number,--°Ç¼ö
- order_web_date date,--ÁÖ¹® ÀÏÀÚ
- customer_code number, --°í°´ÄÚµå(fk)
- order_web_check number, --ÁÖ¹®È®ÀÎ (0:ÁÖ¹®Á¢¼öÈ®ÀÎÁß 1:ÁÖ¹®Á¢¼ö¿Ï·á)
+ order_web_code number PRIMARY KEY, --ì£¼ë¬¸ ì½”ë“œ
+ order_web_total number, --ì´ ê¸ˆì•¡
+ order_web_count number,--ê±´ìˆ˜
+ order_web_date date,--ì£¼ë¬¸ ì¼ì
+ customer_code number, --ê³ ê°ì½”ë“œ(fk)
+ order_web_check number, --ì£¼ë¬¸í™•ì¸ (0:ì£¼ë¬¸ì ‘ìˆ˜í™•ì¸ì¤‘ 1:ì£¼ë¬¸ì ‘ìˆ˜ì™„ë£Œ)
  
 CONSTRAINT customer_code_web FOREIGN KEY(customer_code) REFERENCES CAFE_CUSTOMER(customer_code)
  
@@ -273,13 +271,13 @@ delete from CAFE_ORDER_WEB;
 
 
 DROP TABLE CAFE_ORDERList_web;
---ÁÖ¹® ³»¿ª Å×ÀÌºí      -web
+--ì£¼ë¬¸ ë‚´ì—­ í…Œì´ë¸”      -web
 CREATE TABLE CAFE_ORDERList_web
 (
-orderList_web_code number primary key,--ÁÖ¹® ³»¿ª ÄÚµå
-cafe_product_code number, --»óÇ°ÄÚµå
-orderList_web_count number,--¼ö·®
-order_web_code number,--ÁÖ¹®ÄÚµå(fk)
+orderList_web_code number primary key,--ì£¼ë¬¸ ë‚´ì—­ ì½”ë“œ
+cafe_product_code number, --ìƒí’ˆì½”ë“œ
+orderList_web_count number,--ìˆ˜ëŸ‰
+order_web_code number,--ì£¼ë¬¸ì½”ë“œ(fk)
 
 CONSTRAINT order_web_code FOREIGN KEY(order_web_code) REFERENCES CAFE_ORDER_WEB(order_web_code),
 CONSTRAINT cafe_product_code_order_web FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
@@ -290,10 +288,10 @@ delete from CAFE_ORDERList_web;
 
 
  DROP TABLE CAFE_ORDERLIST_ADD_web;
---ÁÖ¹® ³»¿ª Å×ÀÌºí ÀÇ ¿É¼Ç³»¿ª Å×ÀÌºí
+--ì£¼ë¬¸ ë‚´ì—­ í…Œì´ë¸” ì˜ ì˜µì…˜ë‚´ì—­ í…Œì´ë¸”
 CREATE TABLE CAFE_ORDERLIST_ADD_web(
-    orderList_web_code number, --ÁÖ¹® ³»¿ª ÄÚµå
-    PRODUCT_ADD_CODE number, --¿É¼ÇÄÚµå(fk)
+    orderList_web_code number, --ì£¼ë¬¸ ë‚´ì—­ ì½”ë“œ
+    PRODUCT_ADD_CODE number, --ì˜µì…˜ì½”ë“œ(fk)
     
     CONSTRAINT orderList_web_code_add FOREIGN KEY(orderList_web_code) REFERENCES CAFE_ORDERList_web(orderList_web_code),
     CONSTRAINT PRODUCT_ADD_CODE_order_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
@@ -317,22 +315,22 @@ delete from CAFE_ORDERLIST_ADD_web;
  
  
  
- ----------------------------------------pos  ÁÖ¹®
+ ----------------------------------------pos  ì£¼ë¬¸
  
  
  
 DROP TABLE CAFE_ORDER;
---ÁÖ¹® Å×ÀÌºí
+--ì£¼ë¬¸ í…Œì´ë¸”
 CREATE TABLE CAFE_ORDER
 (
- order_code number PRIMARY KEY, --ÁÖ¹® ÄÚµå
- order_tatal number, --ÃÑ ±İ¾×
- order_count number,--°Ç¼ö
- order_accountType varchar2(30),--°áÁ¦¼ö´Ü
- order_date date,--ÁÖ¹® ÀÏÀÚ
- customer_code number, --°í°´ÄÚµå(fk)
+ order_code number PRIMARY KEY, --ì£¼ë¬¸ ì½”ë“œ
+ order_total number, --ì´ ê¸ˆì•¡
+ order_count number,--ê±´ìˆ˜
+ order_accountType varchar2(30),--ê²°ì œìˆ˜ë‹¨
+ order_date date,--ì£¼ë¬¸ ì¼ì
+ customer_phone number, --ê³ ê°ì „í™”ë²ˆí˜¸(fk)
  
-CONSTRAINT customer_code FOREIGN KEY(customer_code) REFERENCES CAFE_CUSTOMER(customer_code)
+CONSTRAINT customer_phone FOREIGN KEY(customer_phone) REFERENCES CAFE_CUSTOMER(customer_phone)
  
 );
 DESC CAFE_ORDER;
@@ -340,55 +338,63 @@ select * FROM CAFE_ORDER;
 
 
 DROP TABLE CAFE_ORDERList;
---ÁÖ¹® ³»¿ª Å×ÀÌºí
+--ì£¼ë¬¸ ë‚´ì—­ í…Œì´ë¸”
 CREATE TABLE CAFE_ORDERList
 (
-orderList_code number primary key,--»ó¼¼³»¿ª ÄÚµå
-orderList_pCount number,--ºÎ¸ğ
-orderList_count number,--¼ö·®
-order_code number,--ÁÖ¹®ÄÚµå(fk)
+orderList_code number primary key,--ìƒì„¸ë‚´ì—­ ì½”ë“œ
+cafe_product_code number,-- ìƒí’ˆì½”ë“œ
+orderList_count number,--ìˆ˜ëŸ‰
+order_code number,--ì£¼ë¬¸ì½”ë“œ(fk)
 
-CONSTRAINT order_code FOREIGN KEY(order_code) REFERENCES CAFE_ORDER(order_code)
+CONSTRAINT order_code FOREIGN KEY(order_code) REFERENCES CAFE_ORDER(order_code),
+CONSTRAINT cafe_product_code_order FOREIGN KEY(cafe_product_code) REFERENCES CAFE_PRODUCT(cafe_product_code)
 );
  DESC CAFE_ORDERList;
 select * FROM CAFE_ORDERList;
 
- 
+ --ì£¼ë¬¸ ë‚´ì—­ í…Œì´ë¸” ì˜ ì˜µì…˜ë‚´ì—­ í…Œì´ë¸”
+CREATE TABLE CAFE_ORDERLIST_ADD(
+    orderList_code number, --ì£¼ë¬¸ ë‚´ì—­ ì½”ë“œ
+    PRODUCT_ADD_CODE number, --ì˜µì…˜ì½”ë“œ(fk)
+    
+    CONSTRAINT orderList_code_add FOREIGN KEY(orderList_code) REFERENCES CAFE_ORDERList(orderList_code),
+    CONSTRAINT PRODUCT_ADD_CODE_order_add FOREIGN KEY(PRODUCT_ADD_CODE) REFERENCES CAFE_Product_add(PRODUCT_ADD_CODE)
+);
 
 
 -------------------------------------------------------------------------------------------------------------------------------
 --POS
 -------------------------------------------------------------------------------------------------------------------------------
 DROP TABLE CAFE_reserveFund;
---ÁØºñ±İ Å×ÀÌºí
+--ì¤€ë¹„ê¸ˆ í…Œì´ë¸”
 CREATE TABLE CAFE_reserveFund
 (
- reserveFund_code number PRIMARY KEY,    --ÄÚµå
- reserveFund_startTime date, --½ÃÀÛ½Ã°¢
- reserveFund_endTime date,   --Á¾·á½Ã°¢
- reserveFund_total number    --¿µ¾÷ ÁØºñ±İ
+ reserveFund_code number PRIMARY KEY,    --ì½”ë“œ
+ reserveFund_startTime date, --ì‹œì‘ì‹œê°
+ reserveFund_endTime date,   --ì¢…ë£Œì‹œê°
+ reserveFund_total number    --ì˜ì—… ì¤€ë¹„ê¸ˆ
  );
 DESC CAFE_reserveFund;
 select * FROM CAFE_reserveFund;
 
 
 DROP TABLE CAFE_ACCOUNTS;
---ÀÏÀÏÁ¤»êÅ×ÀÌºí
+--ì¼ì¼ì •ì‚°í…Œì´ë¸”
 CREATE TABLE CAFE_ACCOUNTS
 (
-    accounts_code number PRIMARY KEY,    --Á¤»êÄÚµå
-    accounts_deadline timestamp,              --¸¶°¨Ã³¸® ½Ã°£
-    accounts_deadlineDate date,           --¸¶°¨Ã³¸® ÀÏÀÚ
-    accounts_supply number,              --°ø±Ş°¡¾×
-    accounts_tax number,                 --ºÎ°¡¼¼¾×
-    accounts_tatal number,               --ÇÕ°è ±İ¾×
-    accounts_deposit number,             --½ÃÀç ÀÔ±İ
-    accounts_payment number,             --½ÃÀç Ãâ±İ
-    accounts_card number,                   --Ä«µå
-    accounts_cash number,                --Çö±İ
-    accounts_saleCount number,           --ÁÖ¹® °Ç¼ö
-    accounts_salesRevenue number,         --¸ÅÃâ¾×
-    reserveFund_code number,             --ÁØºñ±İ
+    accounts_code number PRIMARY KEY,    --ì •ì‚°ì½”ë“œ
+    accounts_deadline timestamp,              --ë§ˆê°ì²˜ë¦¬ ì‹œê°„
+    accounts_deadlineDate date,           --ë§ˆê°ì²˜ë¦¬ ì¼ì
+    accounts_supply number,              --ê³µê¸‰ê°€ì•¡
+    accounts_tax number,                 --ë¶€ê°€ì„¸ì•¡
+    accounts_tatal number,               --í•©ê³„ ê¸ˆì•¡
+    accounts_deposit number,             --ì‹œì¬ ì…ê¸ˆ
+    accounts_payment number,             --ì‹œì¬ ì¶œê¸ˆ
+    accounts_card number,                   --ì¹´ë“œ
+    accounts_cash number,                --í˜„ê¸ˆ
+    accounts_saleCount number,           --ì£¼ë¬¸ ê±´ìˆ˜
+    accounts_salesRevenue number,         --ë§¤ì¶œì•¡
+    reserveFund_code number,             --ì¤€ë¹„ê¸ˆ
     
     CONSTRAINT reserveFund_code FOREIGN KEY(reserveFund_code) REFERENCES CAFE_reserveFund(reserveFund_code)
 );
